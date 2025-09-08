@@ -520,6 +520,7 @@
         let currentImageIndex = 0;
 
         function startCarousel() {
+            if (carouselImages.length < 2) return;
             if (carouselInterval) {
                 clearInterval(carouselInterval);
             }
@@ -536,8 +537,7 @@
                 carouselInterval = null;
             }
         }
-
-        // Check screen size on load and resize
+        
         function handleHeroImages() {
             if (isMobile()) {
                 document.querySelector('.hero-image-left').style.display = 'none';
@@ -551,7 +551,7 @@
                 stopCarousel();
             }
         }
-        
+
         window.addEventListener('load', handleHeroImages);
         window.addEventListener('resize', handleHeroImages);
         
