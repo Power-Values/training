@@ -51,8 +51,9 @@
         <section class="hero">
     <div class="container hero-container-new">
         <div class="hero-content-wrapper">
+            <!-- Hero Images Section -->
             <div class="hero-image-left">
-                <img src="images/man_smiling.png" alt="A smiling man with his arms crossed." class="hero-image">
+                <img src="images/man_smiling.png" alt="A smiling man with his arms crossed." class="hero-image hero-fade-in-image">
             </div>
             <div class="hero-text-content">
                 <h1 id="hero-headline">Become the Person Your Future Self Will Thank You For. </h1>
@@ -74,7 +75,12 @@
                 </div>
             </div>
             <div class="hero-image-right">
-                <img src="images/woman_smiling.png" alt="A smiling woman with her arms crossed." class="hero-image">
+                <img src="images/woman_smiling.png" alt="A smiling woman with her arms crossed." class="hero-image hero-fade-in-image">
+            </div>
+            <!-- Image Carousel on Mobile -->
+            <div class="hero-image-carousel">
+                <img src="images/man_smiling.png" alt="A smiling man with his arms crossed." class="hero-image hero-carousel-image active">
+                <img src="images/woman_smiling.png" alt="A smiling woman with her arms crossed." class="hero-image hero-carousel-image">
             </div>
         </div>
     </div>
@@ -483,6 +489,72 @@
 
             observer.observe(credBar);
         }
+
+        // --- 4. HERO IMAGE ANIMATION AND MOBILE CAROUSEL ---
+        const heroImages = document.querySelectorAll('.hero-fade-in-image');
+        heroImages.forEach(img => {
+            img.style.opacity = '0';
+        });
+
+        // Use IntersectionObserver to fade in the images when they are in view
+        const heroImageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        heroImages.forEach(img => {
+            heroImageObserver.observe(img);
+        });
+
+        // Mobile Carousel Logic
+        function isMobile() {
+            return window.matchMedia('(max-width: 768px)').matches;
+        }
+
+        let carouselInterval = null;
+        const carouselImages = document.querySelectorAll('.hero-carousel-image');
+        let currentImageIndex = 0;
+
+        function startCarousel() {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+            }
+            carouselInterval = setInterval(() => {
+                carouselImages.forEach(img => img.classList.remove('active'));
+                currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+                carouselImages[currentImageIndex].classList.add('active');
+            }, 3000); // Change image every 3 seconds
+        }
+
+        function stopCarousel() {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+                carouselInterval = null;
+            }
+        }
+
+        // Check screen size on load and resize
+        function handleHeroImages() {
+            if (isMobile()) {
+                document.querySelector('.hero-image-left').style.display = 'none';
+                document.querySelector('.hero-image-right').style.display = 'none';
+                document.querySelector('.hero-image-carousel').style.display = 'block';
+                startCarousel();
+            } else {
+                document.querySelector('.hero-image-left').style.display = 'block';
+                document.querySelector('.hero-image-right').style.display = 'block';
+                document.querySelector('.hero-image-carousel').style.display = 'none';
+                stopCarousel();
+            }
+        }
+        
+        window.addEventListener('load', handleHeroImages);
+        window.addEventListener('resize', handleHeroImages);
+        
     });
     </script>
 </body>

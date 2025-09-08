@@ -165,6 +165,10 @@ section { padding: 5rem 0; overflow-x: clip; }
     display: block;
     object-fit: cover;
 }
+.hero-fade-in-image {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
 .hero-text-content {
     flex-grow: 1;
     max-width: 650px;
@@ -197,6 +201,30 @@ section { padding: 5rem 0; overflow-x: clip; }
 .hero-actions .risk-reassurance p {
     font-size: 0.9rem;
     color: #888;
+}
+
+.hero-image-carousel {
+    display: none; /* Hidden on desktop */
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    height: 350px;
+    margin: 0 auto;
+}
+
+.hero-carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-carousel-image.active {
+    opacity: 1;
 }
 
 .bridge-cta { font-family: var(--font-heading); font-size: 1.2rem; margin-top: 2rem; }
@@ -428,6 +456,10 @@ footer {
 @keyframes gradientWave { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
 .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
 /* 10. RESPONSIVE DESIGN */
 @media (max-width: 992px) {
@@ -451,12 +483,10 @@ footer {
         gap: 1rem;
     }
     .hero-image-left, .hero-image-right {
-        width: 100%;
-        max-width: 300px;
-        order: -1;
-    }
-    .hero-image-right {
         display: none;
+    }
+    .hero-image-carousel {
+        display: block;
     }
     .container { width: 95%; }
     .feature-grid, .final-cta-buttons, .feature-grid-balanced { grid-template-columns: 1fr; }
