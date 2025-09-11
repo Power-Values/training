@@ -14,6 +14,7 @@
 13. STYLES FOR PROMISE/BENEFITS CARD SECTION
 14. STYLES FOR "WHAT'S INSIDE" SECTION
 15. MOVED INLINE STYLES
+16. FAQ SECTION STYLES
 --------------------------- */
 
 /* 1. BRAND GUIDE & GLOBAL STYLES */
@@ -237,11 +238,11 @@ section { padding: 5rem 0; overflow-x: clip; }
 }
 
 /* 5. CONTENT SECTIONS */
-.gap-problem, .experience-outcomes, .differentiators, .confidence-section, .whats-inside {
+.gap-problem, .experience-outcomes, .differentiators, .confidence-section, .whats-inside, .faq {
     padding: 5rem 0;
 }
 .experience-outcomes, .differentiators { background-color: #fdf8fa; }
-.whats-inside, .confidence-section { background-color: #fff; }
+.whats-inside, .confidence-section, .faq { background-color: #fff; }
 .confidence-section {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -665,4 +666,116 @@ footer {
         display: flex;
         flex-direction: column;
     }
+}
+
+/* 16. FAQ SECTION STYLES */
+.faq {
+    background-color: #fdf8fa;
+    padding: 5rem 0;
+}
+
+.faq .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.faq-accordion-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid rgba(94, 37, 58, 0.1);
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: var(--shadow-subtle);
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(94, 37, 58, 0.1);
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 1.5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question::after {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question {
+    background-color: #fdf8fa;
+}
+
+.faq-item.active .faq-question::after {
+    content: '−';
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 1.5rem;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), padding 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.faq-answer p, .faq-answer ul {
+    margin-bottom: 1.5rem;
+}
+.faq-answer ul {
+    margin-left: 2rem;
+    list-style-type: disc;
+}
+.faq-answer li {
+    margin-bottom: 0.5rem;
+}
+.faq-answer p:first-child, .faq-answer ul:first-child {
+    padding-top: 0.5rem;
+}
+
+.faq-cta-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow-subtle);
+    text-align: center;
+    border: none;
+    border-bottom: 4px solid #c1a82b;
+    background-image: linear-gradient(45deg, var(--accent-color) 0%, #ffe14d 50%, var(--accent-color) 100%);
+    background-size: 200% auto;
+    color: var(--primary-color);
+    transition: all 0.2s ease-in-out;
+}
+.faq-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-strong);
+    background-position: right center;
+}
+.faq-cta-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 4px 15px rgba(94, 37, 58, 0.1);
+    border-bottom-width: 2px;
 }
