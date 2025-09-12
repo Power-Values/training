@@ -501,6 +501,18 @@ footer {
         font-size: 1.1rem;
     }
     .footer-container { gap: 1rem; }
+    
+    /* Mobile-specific pricing toggle styles */
+    .pricing-toggle-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        position: relative;
+    }
+    .save-tag {
+        position: static; /* Reset from absolute positioning */
+        margin-bottom: 1rem; /* Add some space below the tag */
+        transform: rotate(-3deg);
+    }
 }
 
 /* 11. MOBILE STICKY CTA */
