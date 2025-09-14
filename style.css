@@ -138,6 +138,14 @@ section { padding: 5rem 0; overflow-x: clip; }
 .button-small { padding: 0.6rem 1.5rem; font-size: 0.9rem; border-bottom-width: 3px; }
 .button-small:active { border-bottom-width: 1px; }
 
+/* Added for hero CTA button to move inline styles */
+.button-hero {
+    background-color: #92e2f1;
+    background-image: none;
+    box-shadow: 0 5px 0 0 #5e253a;
+    border-bottom: 4px solid #5e253a;
+}
+
 /* 4. HERO SECTION */
 .hero { 
     background: #fff; 
@@ -303,6 +311,11 @@ section { padding: 5rem 0; overflow-x: clip; }
     line-height: 1.6;
     color: var(--dark-text);
     margin: 0;
+}
+/* Added for semantic fix in guarantee cards */
+.guarantee-card p strong {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
 }
 
 
@@ -654,27 +667,10 @@ footer {
 .whats-inside-intro {
     text-align: center;
     max-width: 720px;
-    margin: 0 auto 2rem auto;
-}
-.pricing .button {
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-.pricing .button:hover {
-    background-color: #4a90e2; /* Example hover color */
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.pricing .button:active {
-    background-color: #357abd; /* Example active/click color */
-    transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin: 0 auto 2rem auto; 
 }
 
 @media (max-width: 768px) {
-    .benefits-grid {
-        display: flex;
-        flex-direction: column;
-    }
     .feature-grid-balanced {
         display: flex;
         flex-direction: column;
